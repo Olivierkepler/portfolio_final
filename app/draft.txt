@@ -1,0 +1,79 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+
+interface Technology {
+  name: string;
+  icon: string;
+  size: number;
+  x: number;
+  y: number;
+}
+
+export default function background() {
+  const [technologies, setTechnologies] = useState<Technology[]>([
+    { name: 'React', icon: '⚛️', size: 40, x: 0, y: 0 },
+    { name: 'TypeScript', icon: '📘', size: 35, x: 0, y: 0 },
+    { name: 'Node.js', icon: '🟢', size: 38, x: 0, y: 0 },
+    { name: 'Python', icon: '🐍', size: 36, x: 0, y: 0 },
+    { name: 'JavaScript', icon: '💛', size: 42, x: 0, y: 0 },
+    { name: 'Next.js', icon: '⚡', size: 37, x: 0, y: 0 },
+    { name: 'TailwindCSS', icon: '🎨', size: 34, x: 0, y: 0 },
+    { name: 'MongoDB', icon: '🍃', size: 36, x: 0, y: 0 },
+    { name: 'Git', icon: '📦', size: 33, x: 0, y: 0 },
+    { name: 'AWS', icon: '☁️', size: 39, x: 0, y: 0 },
+  ]);
+
+  useEffect(() => {
+    // Randomize initial positions
+    setTechnologies(techs => 
+      techs.map(tech => ({
+        ...tech,
+        x: Math.random() * 400 - 200,
+        y: Math.random() * 400 - 200
+      }))
+    );
+
+    // Animate positions periodically
+    const interval = setInterval(() => {
+      setTechnologies(techs =>
+        techs.map(tech => ({
+          ...tech,
+          x: tech.x + (Math.random() - 0.5) * 20,
+          y: tech.y + (Math.random() - 0.5) * 20
+        }))
+      );
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative h-[400px] w-full overflow-hidden bg-gradient-to-b from-slate-900 to-slate-800 rounded-xl">
+      {technologies.map((tech, index) => (
+        <motion.div
+          key={tech.name}
+          animate={{
+            x: tech.x + window.innerWidth / 2,
+            y: tech.y + window.innerHeight / 4,
+            transition: {
+              duration: 2,
+              ease: "easeInOut"
+            }
+          }}
+          className="absolute cursor-pointer"
+          whileHover={{ scale: 1.2 }}
+        >
+          <div 
+            className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm"
+            style={{ fontSize: tech.size }}
+          >
+            <span>{tech.icon}</span>
+            <span className="text-sm text-white font-medium">{tech.name}</span>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
+}

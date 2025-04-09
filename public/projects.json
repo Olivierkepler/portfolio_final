@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Smart Budget App",
+    "tech": ["React", "Node.js", "MongoDB"],
+    "description": "A budgeting app that uses smart categorization.",
+    "link": "https://github.com/isa-budget/smart-budget"
+  },
+  {
+    "name": "PoseNet Try-On",
+    "tech": ["TensorFlow", "JavaScript", "Tailwind CSS"],
+    "description": "Try clothes virtually using PoseNet and webcam.",
+    "link": "https://github.com/isa-virtual/try-on"
+  }
+]

@@ -24,3 +24,30 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* 🌠 Keyframes for stars animation */
+@keyframes starsMove {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100px);
+  }
+}
+
+/* 🌌 Starry background */
+.starry-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(1px 1px at 10% 10%, white 0.8, transparent 0),
+    radial-gradient(1px 1px at 25% 30%, white 0.8, transparent 0),
+    radial-gradient(1px 1px at 50% 50%, white 0.8, transparent 0),
+    radial-gradient(1px 1px at 70% 80%, white 0.8, transparent 0),
+    radial-gradient(1px 1px at 90% 20%, white 0.8, transparent 0);
+  background-size: cover;
+  opacity: 0.2;
+  animation: starsMove 20s linear infinite alternate;
+  z-index: -1;
+  pointer-events: none;
+}
