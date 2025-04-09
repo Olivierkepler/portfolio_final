@@ -14,6 +14,15 @@ const nextConfig = {
       }
     }
     return config
+  },
+  // Production optimizations
+  compress: true,
+  poweredByHeader: false,
+  reactStrictMode: true,
+  swcMinify: true,
+  images: {
+    domains: ['localhost'],
+    unoptimized: process.env.NODE_ENV === 'development'
   }
 }
 

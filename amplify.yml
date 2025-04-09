@@ -3,6 +3,9 @@ frontend:
   phases:
     preBuild:
       commands:
+        - nvm install 18
+        - nvm use 18
+        - node -v
         - npm ci
     build:
       commands:
@@ -14,4 +17,9 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
-      - .next/cache/**/* 
+      - .next/cache/**/*
+      - .npm/**/*
+  environment:
+    variables:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: 1 
