@@ -23,6 +23,11 @@ const nextConfig = {
   images: {
     domains: ['localhost'],
     unoptimized: process.env.NODE_ENV === 'development'
+  },
+  // Build optimizations
+  distDir: '.next',
+  generateBuildId: async () => {
+    return process.env.BUILD_ID || 'development'
   }
 }
 

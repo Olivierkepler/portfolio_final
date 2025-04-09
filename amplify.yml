@@ -3,10 +3,14 @@ frontend:
   phases:
     preBuild:
       commands:
+        - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+        - export NVM_DIR="$HOME/.nvm"
+        - [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
         - nvm install 18
         - nvm use 18
         - node -v
-        - npm ci
+        - npm -v
+        - npm ci --prefer-offline --no-audit
     build:
       commands:
         - npm run build
@@ -19,7 +23,9 @@ frontend:
       - node_modules/**/*
       - .next/cache/**/*
       - .npm/**/*
+      - $HOME/.nvm/versions/node/v18*/
   environment:
     variables:
       NODE_ENV: production
-      NEXT_TELEMETRY_DISABLED: 1 
+      NEXT_TELEMETRY_DISABLED: 1
+      NVM_DIR: /root/.nvm 
